@@ -74,3 +74,6 @@ totalDates <- seq.Date(from = min(activity$date),
                            to = max(activity$date),
                            by='1 day')
 dateNAs <- sum(!activity$date[complete.cases(activity)] %in% totalDates)
+```
+
+Hellow!!
