@@ -94,7 +94,7 @@ qplot(steps, data=dailyDataNew, geom="histogram") + labs(x="# of steps per day -
 
 As it can be seen, the mean steps per day are not altered by the filled data. This is because we are performing the 'filling' with values obtained from the original set. The median is slightly increased, and the historgram remains practically the same.
 
-4. Weekend vs. Weekday patterns.
+4. Weekend vs. Weekday patterns. 
 --------------------------------
 Finally we investigate if there are differences between activity that takes place on weekends vs. weekdays.
 
