@@ -15,7 +15,7 @@ So first, we read the data file. After this we will start answering questions re
 
 ```r
 activity <- read.csv("activity.csv")
-activity$date <- as.Date(activity$date)
+activity$date <- as.Date(activity$date) 
 ```
 
 1. What is mean total number of steps taken per day?
@@ -40,7 +40,7 @@ library(ggplot2)
 qplot(steps, data=dailyData, geom="histogram") + labs(x="# of steps per day")
 ```
 
-![plot of chunk dailyHist](figure/dailyHist.png) 
+![plot of chunk dailyHist](figure/dailyHist-1.png) 
 
 2. What is the average daily activity pattern?
 ----------------------------------------------
@@ -51,7 +51,7 @@ intervalData <- aggregate(steps~interval, data = activity, FUN = mean, na.rm = T
 intervalMax <- intervalData[which(intervalData$steps==max(intervalData$steps)),]
 ```
 
-The interval with the highest means is **835**, registering an average of **206.1698** steps.
+The interval with the highest means is **835**, registering an average of **206.1698113** steps.
 
 Below you can find the mean interval distribution.
 
@@ -60,7 +60,7 @@ Below you can find the mean interval distribution.
 ggplot(intervalData, aes(x=interval, y=steps)) + geom_line()
 ```
 
-![plot of chunk intervalHist](figure/intervalHist.png) 
+![plot of chunk intervalHist](figure/intervalHist-1.png) 
 
 3. Dealing with missing values.
 -------------------------------
@@ -70,7 +70,7 @@ ggplot(intervalData, aes(x=interval, y=steps)) + geom_line()
 totalNA <- sum(is.na(activity$steps))
 ```
 
-The dataset contains a large number of missing values. To be precise, they represent **13.1148**% of the dataset. To fill in this missing data, we will use the average steps per interval we calculated eariler.
+The dataset contains a large number of missing values. To be precise, they represent **13.1147541**% of the dataset. To fill in this missing data, we will use the average steps per interval we calculated eariler.
 
 
 ```r
@@ -97,7 +97,7 @@ meanStepsNew <- round(mean(dailyDataNew$steps),2)
 medianStepsNew <- quantile(dailyDataNew$steps, probs = 0.5)
 ```
 
-The mean steps were **10766.19** and the median **10766.1887**.
+The mean steps were **10766.19** and the median **10766.1886792**.
 Below you can find a histogram with the overall daily distribution.
 
 
@@ -105,11 +105,11 @@ Below you can find a histogram with the overall daily distribution.
 qplot(steps, data=dailyDataNew, geom="histogram") + labs(x="# of steps per day -- filled dataset")
 ```
 
-![plot of chunk dailyHistNew](figure/dailyHistNew.png) 
+![plot of chunk dailyHistNew](figure/dailyHistNew-1.png) 
 
 As it can be seen, the mean steps per day are not altered by the filled data. This is because we are performing the 'filling' with values obtained from the original set. The median is slightly increased, and the historgram remains practically the same.
 
-4. Weekend vs. Weekday patterns.
+4. Weekend vs. Weekday patterns. 
 --------------------------------
 Finally we investigate if there are differences between activity that takes place on weekends vs. weekdays.
 
@@ -129,4 +129,4 @@ intervalDataNew <- aggregate(steps~interval + weekday, data = activityNew, FUN =
 ggplot(intervalDataNew, aes(x=interval, y=steps)) + geom_line() + facet_grid(weekday~.)
 ```
 
-![plot of chunk weekends](figure/weekends.png) 
+![plot of chunk weekends](figure/weekends-1.png) 
