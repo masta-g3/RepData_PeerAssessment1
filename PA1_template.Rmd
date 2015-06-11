@@ -13,8 +13,8 @@ Thoughout this exercise, we will be analyzing data from a personal activity moni
 So first, we read the data file. After this we will start answering questions related to it.
 
 ```{r readData}
-activity <- read.csv("activity.csv")
-activity$date <- as.Date(activity$date)
+activity <- read.csv("activity.csv") 
+activity$date <- as.Date(activity$date) 
 ```
 
 1. What is mean total number of steps taken per day?
